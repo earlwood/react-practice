@@ -1,8 +1,20 @@
-import React from 'react';
+import React,{useState} from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+
+import LogIn from './Login';
+import HomePage from './HomePage';
+
+const App = () =>{
+  const [userData,changeUserData] = useState({loged:false,userName:"earl",password:"1234"});
+
+  
+
+  return (<div className="content text-align m-auto">
+    {!userData.loged && <LogIn userData={userData} changeUserData={changeUserData} />}
+    {userData.loged && <HomePage />}
+  </div>)
+}
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,8 +22,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
